@@ -3,6 +3,8 @@ package com.example.thetable.appetizer;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,9 +30,16 @@ public class AppetizerController {
     return appetizerService.getAppetizers();
   }
 
+  @GetMapping("/appetizer/{appetizerId}")
+  public ResponseEntity<Appetizer> getAppetizer(@PathVariable("appetizerId") long appetizerId) {
+    Appetizer appetizer = appetizerService.getAppetizer(appetizerId);
+    return new ResponseEntity<Appetizer>(appetizer, HttpStatus.OK);
+  }
+
   @PostMapping
-  public void registerNewAppetizer(@RequestBody Appetizer appetizer) {
+  public ResponseEntity<Appetizer> registerNewAppetizer(@RequestBody Appetizer appetizer) {
     appetizerService.addNewAppetizer(appetizer);
+    return new ResponseEntity<Appetizer>(appetizer, HttpStatus.CREATED);
   }
 
   @DeleteMapping(path = "{appetizerId}")

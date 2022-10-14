@@ -23,12 +23,12 @@ public class AppetizerService {
     return appetizerRepository.findAll();
   }
 
-  public void addNewAppetizer(Appetizer appetizer) {
+  public Appetizer addNewAppetizer(Appetizer appetizer) {
     Optional<Appetizer> appetizerOptional = appetizerRepository.findAppetizerByMealTitle(appetizer.getMealTitle());
     if (appetizerOptional.isPresent()) {
       throw new IllegalStateException("A appetizer with that name already exist");
     }
-    appetizerRepository.save(appetizer);
+    return appetizerRepository.save(appetizer);
   }
 
   public void deleteAppetizer(Long appetizerId) {
@@ -62,6 +62,12 @@ public class AppetizerService {
       appetizer.setMealDescription(mealDescription);
     }
 
+  }
+
+  public Appetizer getAppetizer(long appetizerId) {
+    // TODO - define custom exception to return a 404 back to the user instead of
+    // LAMBDA
+    return appetizerRepository.findById(appetizerId).orElseThrow(() -> new RuntimeException("not found"));
   }
 
 }
