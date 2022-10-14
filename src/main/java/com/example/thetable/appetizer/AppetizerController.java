@@ -25,7 +25,7 @@ public class AppetizerController {
     this.appetizerService = appetizerService;
   }
 
-  @GetMapping
+  @GetMapping("/appetizers")
   public List<Appetizer> getAppetizers() {
     return appetizerService.getAppetizers();
   }
@@ -47,12 +47,14 @@ public class AppetizerController {
     appetizerService.deleteAppetizer(appetizerId);
   }
 
-  @PutMapping(path = "{appetizerId}")
-  public void updateAppetizer(@PathVariable("appetizerId") Long appetizerId,
+  @PutMapping(path = "/appetizer/{appetizerId}")
+  public ResponseEntity<Appetizer> updateAppetizer(@PathVariable("appetizerId") Long appetizerId,
       @RequestParam(required = false) String mealTitle, @RequestParam(required = false) String imageUrl,
       @RequestParam(required = false) String videoUrl, @RequestParam(required = false) String mealDescription,
       @RequestParam(required = false) String ingredientsList) {
-    appetizerService.updateAppetizer(appetizerId, mealTitle, imageUrl, videoUrl, mealDescription, ingredientsList);
+    Appetizer appetizer = appetizerService.updateAppetizer(appetizerId, mealTitle, imageUrl, videoUrl, mealDescription,
+        ingredientsList);
+    return new ResponseEntity<Appetizer>(appetizer, HttpStatus.OK);
   }
 
 }

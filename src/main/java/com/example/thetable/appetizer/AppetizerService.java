@@ -40,7 +40,7 @@ public class AppetizerService {
   }
 
   @Transactional
-  public void updateAppetizer(Long appetizerId, String mealTitle, String imageUrl, String videoUrl,
+  public Appetizer updateAppetizer(Long appetizerId, String mealTitle, String imageUrl, String videoUrl,
       String mealDescription, String ingredientsList) {
     Appetizer appetizer = appetizerRepository.findById(appetizerId)
         .orElseThrow(() -> new IllegalStateException("Appetizer with id " + appetizerId + " does not exist"));
@@ -61,7 +61,7 @@ public class AppetizerService {
         && !Objects.equals(appetizer.getMealDescription(), mealDescription)) {
       appetizer.setMealDescription(mealDescription);
     }
-
+    return appetizer;
   }
 
   public Appetizer getAppetizer(long appetizerId) {
