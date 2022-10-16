@@ -30,8 +30,8 @@ public class AppetizerController {
     return appetizerService.getAppetizers();
   }
 
-  @GetMapping("/appetizer/{appetizerId}")
-  public ResponseEntity<Appetizer> getAppetizer(@PathVariable("appetizerId") long appetizerId) {
+  @GetMapping
+  public ResponseEntity<Appetizer> getAppetizer(@RequestParam(name = "appetizerId") long appetizerId) {
     Appetizer appetizer = appetizerService.getAppetizer(appetizerId);
     return new ResponseEntity<Appetizer>(appetizer, HttpStatus.OK);
   }
@@ -42,16 +42,18 @@ public class AppetizerController {
     return new ResponseEntity<Appetizer>(appetizer, HttpStatus.CREATED);
   }
 
-  @DeleteMapping(path = "{appetizerId}")
-  public void deleteAppetizer(@PathVariable("appetizerId") Long appetizerId) {
+  @DeleteMapping
+  public void deleteAppetizer(@RequestParam(name = "appetizerId") Long appetizerId) {
     appetizerService.deleteAppetizer(appetizerId);
   }
 
-  @PutMapping(path = "/appetizer/{appetizerId}")
-  public ResponseEntity<Appetizer> updateAppetizer(@PathVariable("appetizerId") Long appetizerId,
-      @RequestParam(required = false) String mealTitle, @RequestParam(required = false) String imageUrl,
-      @RequestParam(required = false) String videoUrl, @RequestParam(required = false) String mealDescription,
-      @RequestParam(required = false) String ingredientsList) {
+  @PutMapping
+  public ResponseEntity<Appetizer> updateAppetizer(@RequestParam(name = "appetizerId") Long appetizerId,
+      @RequestParam(name = "mealTitle", required = false) String mealTitle,
+      @RequestParam(name = "imageUrl", required = false) String imageUrl,
+      @RequestParam(name = "videoUrl", required = false) String videoUrl,
+      @RequestParam(name = "mealDescription", required = false) String mealDescription,
+      @RequestParam(name = "ingredientsList", required = false) String ingredientsList) {
     Appetizer appetizer = appetizerService.updateAppetizer(appetizerId, mealTitle, imageUrl, videoUrl, mealDescription,
         ingredientsList);
     return new ResponseEntity<Appetizer>(appetizer, HttpStatus.OK);
