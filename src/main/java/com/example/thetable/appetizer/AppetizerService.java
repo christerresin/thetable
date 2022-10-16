@@ -31,7 +31,7 @@ public class AppetizerService {
     return appetizerRepository.save(appetizer);
   }
 
-  public void deleteAppetizer(Long appetizerId) {
+  public void deleteAppetizer(long appetizerId) {
     boolean exists = appetizerRepository.existsById(appetizerId);
     if (!exists) {
       throw new IllegalStateException("Appetizer with id " + appetizerId + " does not exist. Unable to delete");
@@ -40,7 +40,7 @@ public class AppetizerService {
   }
 
   @Transactional
-  public Appetizer updateAppetizer(Long appetizerId, String mealTitle, String imageUrl, String videoUrl,
+  public Appetizer updateAppetizer(long appetizerId, String mealTitle, String imageUrl, String videoUrl,
       String mealDescription, String ingredientsList) {
     Appetizer appetizer = appetizerRepository.findById(appetizerId)
         .orElseThrow(() -> new IllegalStateException("Appetizer with id " + appetizerId + " does not exist"));
