@@ -1,4 +1,4 @@
-package com.example.thetable;
+package com.example.thetable.healthcontroller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
