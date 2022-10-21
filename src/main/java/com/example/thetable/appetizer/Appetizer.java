@@ -1,9 +1,6 @@
 package com.example.thetable.appetizer;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.example.thetable.Meal;
