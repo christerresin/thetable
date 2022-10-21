@@ -1,45 +1,23 @@
 package com.example.thetable.appetizer;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
+import com.example.thetable.Meal;
 
 @Entity
 @Table(name = "appetizer")
-@Data
-public class Appetizer {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-  private String mealTitle;
-  private String imageUrl;
-  private String videoUrl;
-  private String mealDescription;
-  private String ingredientsList;
+public class Appetizer extends Meal {
 
   public Appetizer() {
   }
 
   public Appetizer(long id, String mealTitle, String imageUrl, String videoUrl, String mealDescription) {
-    this.id = id;
-    this.mealTitle = mealTitle;
-    this.imageUrl = imageUrl;
-    this.videoUrl = videoUrl;
-    this.mealDescription = mealDescription;
+    super(id, mealTitle, imageUrl, videoUrl, mealDescription);
   }
 
-  public Appetizer(String mealTitle, String imageUrl, String videoUrl, String mealDescription,
-      String ingredientsList) {
-    this.mealTitle = mealTitle;
-    this.imageUrl = imageUrl;
-    this.videoUrl = videoUrl;
-    this.mealDescription = mealDescription;
-    this.ingredientsList = ingredientsList;
-
+  public Appetizer(String mealTitle, String imageUrl, String videoUrl, String mealDescription, String ingredientsList) {
+    super(mealTitle, imageUrl, videoUrl, mealDescription, ingredientsList);
   }
 
 }
