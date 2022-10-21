@@ -25,8 +25,8 @@ public class AppetizerController {
   }
 
   @GetMapping("/appetizers")
-  public List<Appetizer> getAppetizers() {
-    return appetizerService.getAppetizers();
+  public List<Appetizer> getAllAppetizers() {
+    return appetizerService.getAllAppetizers();
   }
 
   @GetMapping
