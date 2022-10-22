@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ThetableApplicationTests {
 
 	// @Test
-	// void contextLoads() {
+	// void should200() {
+
 	// }
 
 }

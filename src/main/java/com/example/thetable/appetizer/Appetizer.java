@@ -12,8 +12,9 @@ public class Appetizer extends Meal {
   public Appetizer() {
   }
 
-  public Appetizer(long id, String mealTitle, String imageUrl, String videoUrl, String mealDescription) {
-    super(id, mealTitle, imageUrl, videoUrl, mealDescription);
+  public Appetizer(long id, String mealTitle, String imageUrl, String videoUrl, String mealDescription,
+      String ingredientsList) {
+    super(id, mealTitle, imageUrl, videoUrl, mealDescription, ingredientsList);
   }
 
   public Appetizer(String mealTitle, String imageUrl, String videoUrl, String mealDescription, String ingredientsList) {
