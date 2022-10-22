@@ -22,12 +22,14 @@ public class Meal {
   public Meal() {
   }
 
-  public Meal(long id, String mealTitle, String imageUrl, String videoUrl, String mealDescription) {
+  public Meal(long id, String mealTitle, String imageUrl, String videoUrl, String mealDescription,
+      String ingredientsList) {
     this.id = id;
     this.mealTitle = mealTitle;
     this.imageUrl = imageUrl;
     this.videoUrl = videoUrl;
     this.mealDescription = mealDescription;
+    this.ingredientsList = ingredientsList;
   }
 
   public Meal(String mealTitle, String imageUrl, String videoUrl, String mealDescription,

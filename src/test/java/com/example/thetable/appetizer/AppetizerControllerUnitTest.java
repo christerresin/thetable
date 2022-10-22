@@ -10,14 +10,18 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 class AppetizerControllerUnitTest {
-  Appetizer firstAppetizer = new Appetizer("Salmon Surprise", "none", "none", "amazing salmon on a golden plate",
+  Appetizer firstAppetizer = new Appetizer(1L, "Salmon Surprise", "none", "none", "amazing salmon on a golden plate",
       "salmon, shellfish");
 
-  Appetizer secondAppetizer = new Appetizer("Salmon Surprise", "none", "none", "amazing salmon on a golden plate",
+  Appetizer secondAppetizer = new Appetizer(1L, "Salmon Surprise", "none", "none", "amazing salmon on a golden plate",
       "salmon, shellfish");
 
   List<Appetizer> actual = Arrays.asList(firstAppetizer, secondAppetizer);
   List<Appetizer> expected = Arrays.asList(firstAppetizer, secondAppetizer);
+
+  Appetizer updatedAppetizer = new Appetizer(1L, "This is a new title", "none", "none",
+      "amazing salmon on a golden plate",
+      "salmon, shellfish");
 
   @Test
   void shouldReturnAppetizer() {
@@ -37,6 +41,17 @@ class AppetizerControllerUnitTest {
     when(appetizerService.getAllAppetizers()).thenReturn(actual);
     AppetizerController appetizerController = new AppetizerController(appetizerService);
     assertEquals(expected, appetizerController.getAllAppetizers());
+  }
+
+  @Test
+  void shouldReturnUpdatedAppetizer() {
+    AppetizerService appetizerService = Mockito.mock(AppetizerService.class);
+    when(appetizerService.updateAppetizer(1L, "This is a new title", null, null, null, null))
+        .thenReturn(updatedAppetizer);
+    AppetizerController appetizerController = new AppetizerController(appetizerService);
+    assertEquals(updatedAppetizer,
+        appetizerController.updateAppetizer(1L, "This is a new title", null, null, null, null).getBody());
+
   }
 
 }
